@@ -12,7 +12,7 @@
 #define LOG_SERIAL_BAUD 115200
 
 #define DHT_PIN 7
-#define TEMP_S_TTL 5000
+#define TEMP_S_TTL 60000
 
 #define CAN_SERIAL_BAUD 115200
 #define CAN_SPEED CAN_BPS_125K

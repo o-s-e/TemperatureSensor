@@ -16,11 +16,7 @@
 
 #define RX_BUFFER_SIZE		8
 
-typedef union  {
-	uint8_t b[8];
-	float fval;
-	uint8_t byte[8];
-} ByteUnion;
+
 
 typedef struct CanFrame {
 	unsigned short ID;

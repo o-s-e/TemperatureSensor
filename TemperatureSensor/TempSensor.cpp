@@ -14,8 +14,8 @@ void TempSensor::update()
 		int chk = DHT.read22(DHT_PIN);
 		switch (chk) {
 		case DHTLIB_OK:
-			temp = DHT.temperature;
-			hum = DHT.humidity;
+			temp.f_value = DHT.temperature;
+			hum.f_value = DHT.humidity;
 			break;
 		case DHTLIB_ERROR_CHECKSUM:
 			break;
@@ -24,20 +24,15 @@ void TempSensor::update()
 		default:
 			break;
 		}
-		Serial.print("foo: ");
-		Serial.print(temp);
-		//Convert temp floate to bytearray
-		byte  t_temp = floatToByte(&temp);
-		byte t_hum = floatToByte(&hum);
-		canInterface.send(CanID::TEMP, &t_temp , sizeof(t_temp));
-		canInterface.send(CanID::HUMI, &t_hum, sizeof(t_hum));
+		Serial.print(temp.f_value);
+
+		canInterface.send(CanID::TEMP, temp.value , sizeof(temp.value));
+		canInterface.send(CanID::HUMI, hum.value, sizeof(hum.value));
 		lastStateUpdate.start();
 	}
 }
 
-byte TempSensor::floatToByte(float *value) {
-	byte * t_value = (byte *) &value;
-	return  * t_value;
-}
+
+
 
 TempSensor tempsensor;

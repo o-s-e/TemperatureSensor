@@ -18,21 +18,24 @@
 #define T_SEN_TAG F("TempCSensor")
 
 
+typedef union {
+	float f_value;
+	byte value[sizeof(f_value)];
+}ByteUnion;
 
 
 class TempSensor {
 public:
   void init();
   void update();
-  float getTemp() { return temp; }
+  float getTemp() { return temp.f_value; }
 
 
 private:
-	byte floatToByte(float *value);
 	//Log timer
 	Timer logTimer;
-  float temp;
-  float hum;
+  ByteUnion temp;
+  ByteUnion hum;
 
   // TempSensor  TTL timer
   Timer lastStateUpdate;

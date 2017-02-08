@@ -43,6 +43,9 @@ void CanInterfaceNanoClass::init(int speed) {
 void CanInterfaceNanoClass::sendFrame(CanFrame& frame) {
 	SPI.beginTransaction(SPISettings());
 	can.sendMsgBuf(frame.ID, false, frame.size, frame.data);
+	Serial.println("Test can send: ");
+	Serial.println(frame.ID);
+	Serial.println(frame.size);
 	SPI.endTransaction();
 }
 
