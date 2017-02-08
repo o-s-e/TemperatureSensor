@@ -40,6 +40,7 @@ public:
 	friend void onMcpRxInterrupt();
 
 private:
+	
 	int rxPos;
 	volatile int rxLast;
 	MCP_CAN can = MCP_CS_PIN;

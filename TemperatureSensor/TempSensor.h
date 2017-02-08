@@ -28,10 +28,11 @@ public:
 
 
 private:
+	byte floatToByte(float *value);
 	//Log timer
 	Timer logTimer;
   float temp;
-  ByteUnion t_temp;
+  float hum;
 
   // TempSensor  TTL timer
   Timer lastStateUpdate;
